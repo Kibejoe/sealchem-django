@@ -1,22 +1,27 @@
 from django.db import models
 from django.urls import reverse
-# Create your models here.
+from mptt.fields import TreeForeignKey
+from mptt.models import MPTTModel
 
-class Category(models.Model):
+class Category(MPTTModel):
     category_name = models.CharField(max_length=50, unique=True)
-    slug = models.SlugField(max_length=100, unique=True) #The url of the category
+    slug = models.SlugField(max_length=100, unique=True)  # URL of the category
     description = models.TextField(max_length=255, blank=True)
-    category_image = models.ImageField(upload_to='photos/categories', blank=True)# Where to store the category image
+    category_image = models.ImageField(upload_to='photos/categories', blank=True)  # Where to store the category image
+
+
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+
+    class MPTTMeta:
+        order_insertion_by = ['category_name']
 
     class Meta:
         verbose_name = 'category'
         verbose_name_plural = 'categories'
 
-
-
     def get_url(self):
-        return reverse('products_by_category', args=[self.slug]) #We use the reverse to automatically build the correct url. This comes in handy when we generate urls dynamically
+        return reverse('products_by_category', args=[self.slug])  # Generate the correct URL
 
-    def __str__(self):  #String representation of the model
+    def __str__(self):  # String representation of the model
         return self.category_name
 
