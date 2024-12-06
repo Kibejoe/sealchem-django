@@ -1,0 +1,117 @@
+/* Hide Radio button */
+.rate > input{
+    display: none;
+  }
+  
+  .rate{
+    display: inline-block;;
+    border: 0;
+  }
+  
+  .rate > label{
+    float: right;
+  }
+  
+  /* Showing the stars */
+  .rate > label:before{
+    display: inline-block;
+    font-size: 1.1rem;
+    font-family: FontAwesome;
+    content: "\f005";
+    margin:0;
+    padding:0.3rem .2rem;
+    cursor: pointer;
+  }
+  
+  /* Half star */
+  .rate .half:before{
+    content: "\f089";
+    position: absolute;
+    padding-right: 0;
+  }
+  
+  /* Click and hover */
+  input:checked ~ label, label:hover ~ label{
+    color: #ffb503;
+  }
+  
+  /* hover hightlight */
+  input:checked + label:hover, input:checked ~ label:hover,input:checked ~ label:hover ~ label,
+  label:hover ~ input:checked ~ label{
+    color: #cc9000;
+  }
+  
+  .rating-star i{
+    color: #ffb503 !important;
+  }
+
+  ul.thumb{
+    margin: 0 auto;
+    padding: 0;
+    float: left;
+  }
+
+  ul.thumb li{
+    list-style: none;
+    margin: 10px;
+
+  }
+
+  ul.thumb li img{
+    width: 80px;
+    height: 80px;
+    border: 1px solid grey;
+  }
+
+.list-group-item {
+    position: relative;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    margin-left: 10px; /* Space between item and toggle */
+}
+
+.collapse {
+    padding-left: 20px; /* Indent child items */
+}
+
+.dropdown-toggle {
+  display: inline-block; /* Default display */
+}
+
+.list-group-item.has-children .dropdown-toggle {
+  display: none; /* Hide dropdown toggle for categories with children */
+}
+
+
+.table-shopping-cart .itemside .aside {
+  max-width: 50%;
+  display: block;
+  text-align: left; /* Center the image if needed */
+}
+
+.table-shopping-cart tr td:first-child {
+  width: auto; /* Allow flexibility for the image column */
+  margin-right: 15px;  /* Add space between the image and quantity controls */
+
+}
+
+.table-shopping-cart .itemside .info {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+
+}
+
+.table-shopping-cart .price-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  /* Add space on the left side of price */
+}
+
+.table-shopping-cart .price-wrap .price {
+  margin: 5px 0;        /* Space between price and other details */
+}

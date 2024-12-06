@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+<style>
+    /* Overlay background */
+    .spinner-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: white; /* Semi-transparent black background */
+        display: none; /* Hidden by default */
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; /* Make sure it covers everything */
+    }
+
+    /* Spinner animation */
+    .spinner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .spinner-border {
+        width: 3rem;
+        height: 3rem;
+        border-width: 0.3rem;
+    }
+
+</style>
+<section class="section-content padding-y bg">
+    <div class="container">
+    
+    <!-- ============================ COMPONENT 1 ================================= -->
+    
+        <div class="row">
+            <aside class="col-lg-6">
+                <div class="card">
+
+                    <div class="card card-body">
+                        <h4 class="card-title mb-4">Billing address</h4>
+                        <form action="{% url 'place_order' %}" method="post">
+                            {% csrf_token%}
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="">First Name</label>
+                                    <input type="text" name="first_name" class="form-control" required>             
+                                </div>
+                                <div class="col form-group">
+                                    <label for="">Last Name</label>
+                                    <input type="text" name="last_name" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="">Email</label>
+                                    <input type="email" name="email" class="form-control" required>             
+                                </div>
+                                <div class="col form-group">
+                                    <label for="">Phone Number</label>
+                                    <input type="text" name="phone" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="">Address</label>
+                                    <input type="text" name="address" class="form-control" required>             
+                                </div>
+                                <div class="col form-group">
+                                    <label for="">City</label>
+                                    <input type="text" name="city" class="form-control" required>
+                                </div>
+                            </div>
+                    </div>
+                </div> <!-- card.// -->
+                
+            </aside> <!-- col.// -->
+            <aside class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+
+                        <dl class="dlist-align">
+                            <dt>Total price:</dt>
+                            <dd class="text-right">{{total}}</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Delivery Fee:</dt>
+                            <dd class="text-right">{{tax}}</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Total:</dt>
+                            <dd class="text-right text-dark b"><strong>{{grand_total}}</strong></dd>
+                        </dl>
+                        <hr>
+
+                        <div class="card border-primary mb-3">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">Payment Instructions</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>                                 
+                                <li class="card-text">To complete your purchase, please make the payment above via the Till Number: <strong class="text-success">286646</strong>. The name displayed should be <strong class="text-success">SealChem Enterprises</strong></li>
+                                <li class="card-text">After successfully making the payment, click the <strong class="text-primary">Place Order</strong> button to finalize your order.</li>
+                                <li class="text-muted small">Note that delivery will be arranged after payment is confirmed. You can also call us to order your products</li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+            
+
+
+
+                    
+                        <button type="submit" name="submit" class="btn btn-primary btn-block" id="place-order-btn">Place Order</button>
+
+                        <a href="tel:0742869019" class="btn btn-light btn-block">
+                            <i class="fa fa-phone"></i> Call Us
+                        </a>
+                        
+                    </form>  
+
+                    </div> <!-- card-body.// -->
+                </div> <!-- card.// -->
+
+            </aside> <!-- col.// -->
+
+            <div id="spinner-overlay" class="spinner-overlay">
+                <div class="spinner">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+                
+                
+        </div> <!-- row.// -->
+    </div> <!-- container .//  -->
+</section>
+
+<script>
+
+    document.getElementById('place-order-btn').addEventListener('click', function () {
+        const spinner = document.getElementById('spinner-overlay');
+        spinner.style.display = 'flex';
+    });
+
+</script>
+
+
+{% endblock %}
+    
+
