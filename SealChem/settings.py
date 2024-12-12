@@ -31,9 +31,9 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('Debug', default = False, cast=bool)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '188.166.170.89']
+ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS = ['https://rneig-197-232-130-27.a.free.pinggy.link']
+CSRF_TRUSTED_ORIGINS = []
 
 
 # Application definition

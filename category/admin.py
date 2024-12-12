@@ -7,7 +7,7 @@ from store.models import Product
     
 
 class CategoryAdmin(DraggableMPTTAdmin):
-    mptt_indent_field = "name"
+    mptt_indent_field = "category_name"
     list_display = ('tree_actions', 'indented_title',
                     'related_products_count', 'related_products_cumulative_count')
     list_display_links = ('indented_title',)
