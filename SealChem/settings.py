@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'admin_honeypot',
     'mptt',
     'bootstrap5',
+    'admin_thumbnails'
 
 ]
 

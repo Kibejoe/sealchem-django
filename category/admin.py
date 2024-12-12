@@ -4,17 +4,15 @@ from mptt.admin import DraggableMPTTAdmin
 from store.models import Product
 # Register your models here. These models will appear in the admin panel
 
-
-class CategoryAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('category_name',)}
-    list_display = ('category_name', 'slug')
     
 
-class CategoryAdmin2(DraggableMPTTAdmin):
+class CategoryAdmin(DraggableMPTTAdmin):
     mptt_indent_field = "name"
     list_display = ('tree_actions', 'indented_title',
                     'related_products_count', 'related_products_cumulative_count')
     list_display_links = ('indented_title',)
+    prepopulated_fields = {'slug': ('category_name',)}
+
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -43,7 +41,7 @@ class CategoryAdmin2(DraggableMPTTAdmin):
         return instance.products_cumulative_count
     related_products_cumulative_count.short_description = 'Related products (in tree)'
 
-admin.site.register(Category, CategoryAdmin2)
+admin.site.register(Category, CategoryAdmin)
 
 
 
