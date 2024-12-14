@@ -6,10 +6,6 @@ from mptt.models import MPTTModel
 class Category(MPTTModel):
     category_name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=100, unique=True)  # URL of the category
-    description = models.TextField(max_length=255, blank=True)
-    category_image = models.ImageField(upload_to='photos/categories', blank=True)  # Where to store the category image
-
-
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
 
     class MPTTMeta:
