@@ -31,7 +31,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('Debug', default = False, cast=bool)
 
-ALLOWED_HOSTS = ['sealchemltd.com', '188.166.170.89']
+ALLOWED_HOSTS = ['localhost','sealchemltd.com', '188.166.170.89']
 
 
 
