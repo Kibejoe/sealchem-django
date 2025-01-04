@@ -3,7 +3,7 @@ from store.models import Product, ReviewRating, Variation
 from django.db.models import Min, Max
 
 def home(request):
-    products = Product.objects.all().filter(is_available=True).order_by('created_date')
+    products = Product.objects.all().filter(is_available=True).order_by('created_date')[:10]
 
 
     product_list = []
@@ -18,7 +18,6 @@ def home(request):
         single_price = None
         if variation_count == 1:
             single_price = Variation.objects.filter(product=product, is_active=True).first().price
-
 
         data = {
             'product': product,  #context is the dictionary passed from the view to the template. The key used in the context will be the key used in the template. The value is the result of the query i.e Products.objects.all().filter()
